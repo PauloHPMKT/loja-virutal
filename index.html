@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Cardapio</title>
+		<style>
+			#produto{
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 0 24px;
+				display: flex;
+			}
+			#carrinho{
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 0 24px;
+			}
+			.produto-single{
+				width: 33.3%;
+				padding: 0 20px;
+				filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.473));
+			}
+			img{
+				width: 300px;
+			}
+			a {
+				text-decoration: none;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="header">
+
+		</header>
+		
+		<h2>Vitrine</h2>
+		<div id="produto">
+		</div><!---produtos-->
+
+		<h2>Carrinho</h2>
+		<div id="carrinho">
+		</div><!---carrinho-->
+
+
+
+		<script>
+
+			const itens = [
+				{
+					id: 0,
+					nome: 'camiseta',
+					img: './imagem/boom.jpg',
+					quantidade: 0
+				},
+				{
+					id: 1,
+					nome: 'short',
+					img: './imagem/boom.jpg',
+					quantidade: 0
+				},
+				{
+					id: 2, 
+					nome: 'sapato',
+					img: './imagem/boom.jpg',
+					quantidade: 0
+				}
+			];
+
+			inicializarLoja = () => {
+				var containerProdutos = document.getElementById('produto');
+				itens.map((val) => {
+					containerProdutos.innerHTML += `
+					
+					<div class="produto-single">
+						<img src="${val.img}">
+						<p>${val.nome}</p>
+						<a key="`+val.id+`" href="#">Adicionar ao Carrinho</a>
+					</div>
+					`;
+				});
+			};
+
+
+
+			inicializarLoja();
+
+
+			atualizarCarrinho = () => {
+				var containerCarrinho = document.getElementById('carrinho');
+				containerCarrinho.innerHTML = '';
+				itens.map((val)=>{
+					if(val.quantidade > 0){
+						containerCarrinho.innerHTML += `
+
+					<p>`+val.nome+` | quantidade: `+val.quantidade+`</p>
+					<hr>
+					
+					`;
+					}
+					
+				});
+			}
+
+			var links = document.getElementsByTagName('a');
+			
+			for(var i = 0; i < links.length; i++){
+				links[i].addEventListener('click', function(){
+					let key = this.getAttribute('key');
+					itens[key].quantidade++;
+					atualizarCarrinho();
+					return false;
+				})
+			}	
+
+			const header = document.querySelector('#header')
+
+			iniciar
+
+		</script>
+
+	
+	</body>
+</html>
